@@ -2,74 +2,130 @@
 Smart safety monitoring system for real-time environmental sensing, motion detection, and GSM-based alerts.
 # SafeLife – Smart Safety Monitoring System
 
-SafeLife is an IoT-based safety monitoring prototype designed to detect abnormal environmental conditions and human movement and provide immediate alerts.
+**SafeLife** is a prototype safety monitoring system developed using **Arduino Uno**. The system monitors environmental conditions and detects human movement, providing local and remote alerts when an abnormal condition is detected.
+
+The project was developed as an embedded systems and IoT prototype with a focus on low-cost safety monitoring and real-time response.
 
 ## Features
 
 * 🌡️ Temperature and humidity monitoring
-* 🚶 Motion detection
-* 🔊 Audible alarm
-* 📱 GSM-based alert system
-* ⚡ Relay control
+* 🚶 Human motion detection
+* 🔊 Local audible warning
+* 📱 GSM-based remote notification
+* ⚡ Relay control for external devices
+* 🔄 Real-time sensor monitoring
 * 🔧 Modular and expandable design
 
 ## Hardware
 
-* Arduino
-* DHT11 Temperature & Humidity Sensor
-* PIR Motion Sensor
-* SIM800L GSM Module
-* Buzzer
-* Relay Module
-
-## How It Works
-
-The system continuously monitors environmental conditions and detects human movement.
-
-The Arduino processes the sensor data and activates the appropriate response when an abnormal condition is detected.
-
-The buzzer provides a local warning, while the SIM800L module can be used to send remote alerts.
+* **Arduino Uno** – Main controller
+* **DHT11** – Temperature and humidity sensor
+* **PIR Motion Sensor** – Human movement detection
+* **SIM800L** – GSM communication
+* **Buzzer** – Local alarm
+* **Relay Module** – External device control
 
 ## System Architecture
 
 ```text
-DHT11 ──────┐
-            │
-PIR ────────┼──> Arduino ───> Buzzer
-            │
-            └───────────────> SIM800L ───> Remote Alert
+             ┌──────────────┐
+             │    DHT11     │
+             │ Temperature  │
+             │  & Humidity  │
+             └──────┬───────┘
+                    │
+                    │
+             ┌──────▼───────┐
+             │              │
+             │  Arduino Uno │
+             │              │
+             └───┬────┬─────┘
+                 │    │
+          ┌──────┘    └─────────┐
+          ▼                      ▼
+      ┌────────┐            ┌─────────┐
+      │ Buzzer │            │ SIM800L │
+      │  Alarm │            │   GSM   │
+      └────────┘            └────┬────┘
+                                 │
+                                 ▼
+                           Remote Alert
 
-Arduino ─────────────────────> Relay
+             ┌──────────────┐
+             │ PIR Sensor   │
+             │ Motion       │
+             └──────┬───────┘
+                    │
+                    ▼
+               Arduino Uno
+                    │
+                    ▼
+                 Decision
 ```
+
+## How It Works
+
+1. The **DHT11 sensor** measures temperature and humidity.
+2. The **PIR sensor** detects human movement.
+3. The **Arduino Uno** processes the sensor data.
+4. When a predefined abnormal condition is detected, the system activates the **buzzer**.
+5. The **SIM800L GSM module** can send a remote notification.
+6. The **relay module** can be used to control an external electrical device.
+
+## Software
+
+The system is programmed using **Arduino C/C++** and developed in the Arduino IDE.
 
 ## Technologies
 
-* Arduino
-* C/C++
+* Arduino Uno
+* Arduino C/C++
 * Embedded Systems
 * IoT
 * GSM Communication
 * Sensor Integration
 * Automation
+* Real-Time Monitoring
 
-## Project Status
+## Project Structure
 
-**Prototype – In Development**
-
-The current version demonstrates the core sensing, processing, alarm, and communication concepts.
+```text
+SafeLife-IoT-Safety-System/
+│
+├── README.md
+│
+├── src/
+│   └── SafeLife.ino
+│
+├── hardware/
+│   ├── circuit-diagram.png
+│   └── wiring.png
+│
+├── images/
+│   └── prototype.jpg
+│
+└── docs/
+    └── system-architecture.png
+```
 
 ## Future Development
 
-Future versions may include:
+Future versions of SafeLife can include:
 
-* ESP32-based wireless connectivity
+* ESP32-based wireless communication
 * Mobile application
 * Cloud monitoring
-* GPS tracking
+* GPS location tracking
 * Battery monitoring
 * Additional environmental sensors
-* Automatic emergency response
 * Advanced anomaly detection
+* Improved emergency notification system
+
+## Project Status
+
+**Prototype – Completed / Further Development Possible**
+
+The current prototype demonstrates the integration of environmental sensing, motion detection, local alarm, GSM communication, and external device control.
 
 ## Author
 
@@ -79,4 +135,5 @@ Mechanical Engineer | Embedded Systems & Robotics
 
 ---
 
-⭐ This project is part of my embedded systems and robotics portfolio.
+⭐ SafeLife is part of my embedded systems and robotics project portfolio.
+
